@@ -1,0 +1,148 @@
+/* Tangerine — estilos encapsulados en el Dashboard de la tarea.
+   No modifican /styling ni los componentes globales shadcn/ui. */
+.dashboard {
+  --t-orange: #ff822e;
+  --t-orange-dark: #df5a13;
+  --t-ink: #171719;
+  --t-paper: #f5f3f0;
+  --t-line: #e9e4de;
+  --t-muted: #77716d;
+  --primary: #ff822e;
+  --primary-foreground: #171719;
+  --ring: #ff822e;
+  --accent: #fff0e4;
+  --accent-foreground: #9a3f13;
+  --border: #e9e4de;
+  --radius: 0.9rem;
+  background: var(--t-paper);
+  color: var(--t-ink);
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+.dashboard > div { position: relative; }
+.hero {
+  background: #18181b;
+  color: #fff;
+  border: 1px solid #252527;
+  border-radius: 24px;
+  min-height: 190px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 44px rgba(23, 23, 25, .14);
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  height: 280px;
+  width: 280px;
+  right: 13%;
+  top: -180px;
+  background: var(--t-orange);
+  border-radius: 50%;
+  opacity: .95;
+  pointer-events: none;
+}
+.hero > * { position: relative; z-index: 1; }
+.hero h1 { letter-spacing: -.055em; line-height: 1.09; }
+.hero p:first-child { color: #ffb582; font-size: .76rem; font-weight: 800; letter-spacing: .13em; }
+.hero button { background: var(--t-orange); color: #191919; border: none; font-weight: 750; border-radius: 12px; }
+.hero button:hover { background: #ffac6b; }
+
+/* Barra de navegación: píldoras contrastadas */
+.dashboard :global([data-slot="tabs-list"]) {
+  background: #fff;
+  border: 1px solid var(--t-line);
+  border-radius: 17px;
+  box-shadow: 0 3px 15px rgba(36, 28, 20, .04);
+  width: fit-content;
+  max-width: 100%;
+  padding: 7px;
+  gap: 5px;
+}
+.dashboard :global([data-slot="tabs-trigger"]) {
+  padding: 11px 17px;
+  color: #6b6764;
+  font-weight: 700;
+  border-radius: 11px;
+  transition: background .18s ease, color .18s ease;
+}
+.dashboard :global([data-slot="tabs-trigger"][data-state="active"]) {
+  background: var(--t-ink);
+  color: #fff;
+  box-shadow: none;
+}
+.dashboard :global([data-slot="tabs-trigger"]:hover:not([data-state="active"])) { background: #fff2e8; color: #ab4b17; }
+
+/* Tarjetas */
+.dashboard :global([data-slot="card"]) {
+  border: 1px solid var(--t-line);
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 5px 18px rgba(45, 38, 29, .035);
+  transition: box-shadow .2s ease, transform .2s ease;
+}
+.dashboard :global([data-slot="card"]:hover) {
+  box-shadow: 0 12px 30px rgba(45, 38, 29, .085);
+  transform: translateY(-2px);
+}
+.dashboard :global([data-slot="card-title"]) { letter-spacing: -.025em; font-weight: 800; color: #222022; }
+.dashboard :global([data-slot="card-description"]) { color: #827c77; }
+.dashboard :global([data-slot="card-header"]) { padding-bottom: 12px; }
+.dashboard :global([data-slot="card-content"]) { line-height: 1.6; }
+.dashboard :global([data-slot="card"] .text-orange-600) { color: var(--t-orange); }
+.dashboard :global([data-slot="card"] .bg-orange-500) { background: var(--t-orange); }
+.dashboard :global([data-slot="card"] .bg-slate-100) { background: #f1ece7; }
+
+/* Botones y etiquetas */
+.dashboard :global(button[data-slot="button"]) { border-radius: 11px; font-weight: 700; transition: all .18s ease; }
+.dashboard :global(button[data-slot="button"][data-variant="default"]) { background: var(--t-orange); color: #20140b; }
+.dashboard :global(button[data-slot="button"][data-variant="default"]:hover) { background: #fa9a53; }
+.dashboard :global(button[data-slot="button"][data-variant="outline"]) { border-color: #e4ddd7; color: #302b28; background: white; }
+.dashboard :global(button[data-slot="button"][data-variant="outline"]:hover) { background: #fff1e6; border-color: #ffbf94; }
+.dashboard :global([data-slot="badge"]) { border-radius: 999px; padding: 5px 11px; letter-spacing: .01em; }
+.dashboard :global([data-slot="badge"][data-variant="default"]) { background: #fff0df; color: #af4b0f; border: 1px solid #ffd1af; }
+.dashboard :global([data-slot="badge"][data-variant="secondary"]) { background: #f1f0ee; color: #5a514a; }
+.dashboard :global([data-slot="input"]) { border-radius: 11px; border-color: #e5ded7; background: #fff; }
+.dashboard :global([data-slot="input"]:focus-visible) { border-color: var(--t-orange); box-shadow: 0 0 0 3px #ff822e20; }
+.dashboard :global([data-slot="switch"][data-state="checked"]) { background: var(--t-orange); }
+
+/* Tabla de tareas */
+.dashboard table { border-collapse: separate; border-spacing: 0; }
+.dashboard thead { background: #f8f5f1; border: none; }
+.dashboard th { color: #63584f; font-size: .72rem; text-transform: uppercase; letter-spacing: .075em; white-space: nowrap; }
+.dashboard td { border-bottom: 1px solid #f1ece7; color: #3c3734; }
+.dashboard tbody tr:hover { background: #fffbf8; }
+.dashboard tbody tr:last-child td { border-bottom: 0; }
+.dashboard :global([data-slot="pagination-link"][data-active="true"]) { background: var(--t-ink); color: white; border-color: var(--t-ink); }
+.dashboard :global([data-slot="alert"]) { border-radius: 16px; }
+
+/* Dialog vive en un portal fuera de la raíz .dashboard */
+.modal {
+  --primary: #ff822e;
+  --primary-foreground: #171719;
+  --ring: #ff822e;
+  --accent: #fff0e4;
+  --accent-foreground: #9a3f13;
+  --border: #e9e4de;
+  --radius: .9rem;
+  border: 1px solid #e7ddd3;
+  border-radius: 22px;
+  background: #fffaf6;
+  color: #171719;
+  box-shadow: 0 24px 80px rgba(24, 17, 11, .3);
+}
+.modal :global([data-slot="dialog-title"]) { font-size: 1.25rem; font-weight: 850; letter-spacing: -.03em; }
+.modal :global([data-slot="input"]), .modal :global([data-slot="select-trigger"]) { background: white; border-radius: 11px; }
+.modal :global([data-slot="button"]) { border-radius: 10px; }
+.modal :global([data-slot="button"][data-variant="default"]) { background: #ff822e; color: #1c1611; }
+.modal :global([data-slot="button"][data-variant="default"]:hover) { background: #f5a066; }
+.modal :global([data-slot="badge"]) { border-radius: 50px; }
+.modal input[type="checkbox"] { accent-color: #ff822e; }
+
+@media (max-width: 640px) {
+  .dashboard { padding-left: 13px; padding-right: 13px; }
+  .hero { min-height: auto; padding: 25px 20px; }
+  .hero::after { right: -90px; opacity: .3; }
+  .dashboard :global([data-slot="tabs-list"]) { width: 100%; }
+  .dashboard :global([data-slot="tabs-trigger"]) { flex-grow: 1; padding: 9px 10px; font-size: .8rem; }
+}
